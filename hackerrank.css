@@ -1,0 +1,279 @@
+#Hackerrank Beautiful pair solutio
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+from collections import Counter 
+
+# Complete the beautifulPairs function below.
+def beautifulPairs(A, B):
+    ac = Counter(A)
+    bc = Counter(B)
+    pairs = 0
+    for val in ac:
+        if val in bc:
+            pairs += min(ac[val],bc[val])
+    if pairs == len(A):
+        return pairs - 1
+    else:
+        return pairs + 1
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    A = list(map(int, input().rstrip().split()))
+
+    B = list(map(int, input().rstrip().split()))
+
+    result = beautifulPairs(A, B)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+
+
+
+
+
+
+#Hackerrank time conversion solution
+
+#!/bin/python3
+
+import os
+import sys
+
+
+# Complete the timeConversion function below.
+
+def timeConversion(s):
+    #
+    # Write your code here.
+    #
+    # Checking if last two elements of time 
+    # is AM and first two elements are 12 
+    if s[-2:] == "AM" and s[:2] == "12": 
+        return "00" + s[2:-2] 
+          
+    # remove the AM     
+    elif s[-2:] == "AM": 
+        return s[:-2] 
+      
+    # Checking if last two elements of time 
+    # is PM and first two elements are 12    
+    elif s[-2:] == "PM" and s[:2] == "12": 
+        return s[:-2] 
+          
+    else: 
+          
+        # add 12 to hours and remove PM 
+        return str(int(s[:2]) + 12) + s[2:8] 
+
+if __name__ == '__main__':
+    f = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    f.write(result + '\n')
+
+    f.close()
+
+
+
+
+
+
+#!/bin/python
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the toys function below.
+def toys(w):
+    c=1
+    w.sort()
+    s=w[0]
+    for i in w:
+        if i > s+4:
+            c+=1
+            s=i
+    return c
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(raw_input())
+
+    w = map(int, raw_input().rstrip().split())
+
+    result = toys(w)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+
+
+
+
+
+#!/bin/python
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the decentNumber function below.
+def decentNumber(n):
+    if n%3==0:
+        return "5"*n
+    elif (n-5)>=0 and (n-5)%3==0:
+        return "5"*(n-5)+"3"*5
+    elif (n-10)>=0 and (n-10)%3==0:
+        return "5"*(n-10)+"3"*10
+    else:
+        return "-1"
+    
+
+T=int(raw_input())
+for i in xrange(T):
+    n=int(raw_input())
+    print decentNumber(n)        
+#if __name__ == '__main__':
+    #t = int(raw_input().strip())
+
+    #for t_itr in xrange(t):
+       # n = int(raw_input().strip())
+
+       # decentNumber(n)
+
+
+
+
+#Mini-max-sum
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the miniMaxSum function below.
+def miniMaxSum(arr):
+    arr.sort()
+    s = sum(arr)
+    maxResult = s - arr[0]
+    minResult = s - arr[len(arr) - 1]
+    
+    print(minResult, maxResult)
+
+
+def Main():
+    arr = list(map(int, input().rstrip().split()))
+ 
+if __name__ == '__main__':
+    arr = list(map(int, input().rstrip().split()))
+
+    miniMaxSum(arr)
+
+
+
+#Sherlock and anagram
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the sherlockAndAnagrams function below.
+def sherlockAndAnagrams(s):
+    n = len(s)
+    res=0
+    for i in range(1,n): #length of the substring
+        d={}
+        for j in range(n-i+1):
+            subs = ''.join(sorted(s[j:j+i]))
+            if subs not in d:
+              d[subs]=1
+            else:
+                d[subs]+=1
+        
+            res +=d[subs]-1
+    
+    return res
+              
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    q = int(input())
+
+    for q_itr in range(q):
+        s = input()
+
+        result = sherlockAndAnagrams(s)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+
+#Birthday cake challenge
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'birthdayCakeCandles' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts INTEGER_ARRAY candles as parameter.
+#
+
+def birthdayCakeCandles(candles):
+    # Write your code here
+    counter = 0
+    m = max(candles)
+
+    for i in range(0,len(candles)):
+        if(candles[i] == m):
+            counter += 1
+
+    return counter
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    candles_count = int(input().strip())
+
+    candles = list(map(int, input().rstrip().split()))
+
+    result = birthdayCakeCandles(candles)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
